@@ -5,9 +5,9 @@ from tkinter import *
 from tkinter import messagebox
 
 def math_3_numbers_med_add():
-    a = random.randint(1, 100)
-    b = random.randint(1, 100)
-    c = random.randint(1, 100)
+    a = random.randint(1, 20)
+    b = random.randint(1, 20)
+    c = random.randint(1, 20)
     expression = f"{a}+{b}+{c}"
     return expression
 
@@ -81,18 +81,18 @@ def update_score(name,score):
 
 def first_page():
     fk = tkinter.Tk()
-    fk.title("Mad Math Beta")
+    fk.title("Maths Quiz Game!")
     fk.minsize(800, 500)
     fk.maxsize(800, 500)
     fk.configure(bg="pink")
     #Create a canvas object
-    canvas= Canvas(fk, width= 800, height= 500, bg="silver")
+    canvas= Canvas(fk, width= 800, height= 500, bg="bisque")
     #Add a text in Canvas
-    canvas.create_text(380, 50, text="WELCOME TO MAD MATH", fill="black", font=('Helvetica 20 bold'))
-    canvas.create_text(130, 250, text="Please enter your name:", fill="black", font=('Helvetica 15 bold'))
+    canvas.create_text(380, 50, text="WELCOME TO MATHS QUIZ", fill="black", font=('Ariel 20 bold'))
+    canvas.create_text(130, 250, text="ENTER YOUR NAME:", fill="black", font=('Helvetica 15 bold'))
     nameentry = Entry(fk)
     canvas.create_window(320, 250, window=nameentry)
-    canvas.create_text(65, 400, text="High score", fill="black", font=('Helvetica 15 bold'))
+    canvas.create_text(65, 400, text="HIGH SCORE:", fill="black", font=('Helvetica 15 bold'))
     #checking if there is a highscore or not:
     def high_score():
         f=open("highscore.bin","rb+")
@@ -105,17 +105,17 @@ def first_page():
                 name=i[0]
                 high_score=i[1]
                 return f'{name}:{high_score}'
-    canvas.create_text(70,430, text=high_score(), fill="Blue", font=('Helvetica 15 bold'))
+    canvas.create_text(70,430, text=high_score(), fill="dark green", font=('Helvetica 15 bold'))
     def submit():
         global name
         name=nameentry.get()
         if len(name)!=0:
             tk=tkinter.Tk()
-            tk.title('play')
+            tk.title('QUIZ BEGINS!')
             tk.minsize(800, 500)
             tk.maxsize(800, 500)
             # Create a canvas object
-            col=["red","blue","green","pink","violet","orange","cyan"]
+            col=["lemon chiffon","light blue","light green","light pink","light yellow","light salmon","light sky blue","light steel blue","light coral","light goldenrod yellow","light sea green","light slate gray","light slate grey"]
             r_col=random.choice(col)
             canvas = Canvas(tk, width=800, height=500, bg=r_col)
             def random_ques():
@@ -132,7 +132,7 @@ def first_page():
             def options():
                 global question_number
                 expression=(random_ques())
-                canvas.create_text(100, 20, text=f">>>>>Question:{question_number}>> {expression}", fill="Black",
+                canvas.create_text(100, 20, text=f">>Question:{question_number}>> {expression}", fill="Black",
                                    font=('Arial 13'))
                 a=eval(expression)
                 b=random.randint(a-10,a+10)
